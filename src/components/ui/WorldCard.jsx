@@ -10,24 +10,24 @@ export default function WorldCard({ world, index }) {
 
   return (
     <motion.div
-      className={`world-card relative rounded-2xl border-2 ${world.borderColor} ${world.bgColor} p-4 cursor-pointer overflow-hidden`}
+      className={`world-card relative rounded-2xl border-2 ${world.borderColor} ${world.bgColor} p-6 cursor-pointer overflow-hidden text-center`}
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.08 }}
+      transition={{ delay: index * 0.1 }}
       onClick={() => navigate(`/world/${world.id}`)}
     >
       {/* Decorative glow */}
-      <div className={`absolute -top-8 -right-8 w-24 h-24 rounded-full bg-gradient-to-br ${world.color} opacity-20 blur-2xl`} />
+      <div className={`absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br ${world.color} opacity-20 blur-2xl pointer-events-none`} />
 
-      <div className="relative flex items-start gap-4">
-        <span className="text-4xl leading-none flex-shrink-0">{world.emoji}</span>
-        <div className="flex-1 min-w-0">
-          <h3 className={`font-game text-lg ${world.textColor} leading-tight`}>{world.name}</h3>
-          <p className="text-white/55 text-xs mt-0.5 mb-2 leading-relaxed line-clamp-2">{world.description}</p>
-          <div className="flex items-center justify-between">
-            <StarRating stars={Math.min(totalStars, 3)} size="sm" />
-            <span className={`text-xs font-bold ${world.textColor}`}>{totalStars}/18 ⭐</span>
-          </div>
+      <div className="relative flex flex-col items-center gap-3">
+        <span className="text-5xl leading-none">{world.emoji}</span>
+        <div>
+          <h3 className={`font-game text-xl ${world.textColor} mb-1`}>{world.name}</h3>
+          <p className="text-white/60 text-sm leading-relaxed">{world.description}</p>
+        </div>
+        <div className="flex items-center justify-center gap-3 mt-1">
+          <StarRating stars={Math.min(totalStars, 3)} size="sm" />
+          <span className={`text-sm font-bold ${world.textColor}`}>{totalStars}/18 ⭐</span>
         </div>
       </div>
     </motion.div>

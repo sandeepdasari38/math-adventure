@@ -42,10 +42,10 @@ export default function Home() {
         </motion.div>
       ))}
 
-      {/* Scrollable content wrapper */}
-      <div className="relative z-10 flex flex-col items-center justify-start min-h-screen py-8 px-4">
+      {/* Page content — centred column, scrollable if needed */}
+      <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-10">
         <motion.div
-          className="flex flex-col items-center gap-5 w-full max-w-md"
+          className="flex flex-col items-center gap-6 w-full max-w-md"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
@@ -53,29 +53,29 @@ export default function Home() {
           {/* ── Title ── */}
           <div className="text-center">
             <motion.div
-              className="text-5xl mb-1 inline-block"
+              className="text-5xl mb-2 inline-block"
               animate={{ rotate: [0, 10, -10, 0] }}
               transition={{ duration: 2.5, repeat: Infinity }}
             >
               🌟
             </motion.div>
-            <h1 className="font-game text-4xl md:text-5xl text-white leading-tight">
+            <h1 className="font-game text-5xl text-white leading-tight">
               Math
               <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent"> Adventure</span>
             </h1>
-            <p className="text-white/60 text-sm mt-1">The epic quest to master mathematics!</p>
+            <p className="text-white/60 text-sm mt-2">The epic quest to master mathematics!</p>
           </div>
 
           {/* ── Form card ── */}
           <motion.div
-            className="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-5 shadow-2xl"
+            className="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-3xl p-6 shadow-2xl"
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.15 }}
           >
             {/* Name input */}
-            <div className="mb-4">
-              <label className="block font-game text-white/80 mb-1.5 text-base">
+            <div className="mb-5">
+              <label className="block font-game text-white/80 mb-2 text-base">
                 Your Name, Hero!
               </label>
               <input
@@ -85,40 +85,38 @@ export default function Home() {
                 onKeyDown={e => e.key === 'Enter' && handleStart()}
                 placeholder="Enter your name..."
                 maxLength={20}
-                className="w-full bg-white/10 border-2 border-white/25 rounded-xl px-4 py-2.5 text-white text-base placeholder-white/40 focus:outline-none focus:border-violet-400 transition-colors"
+                className="w-full bg-white/10 border-2 border-white/25 rounded-xl px-4 py-3 text-white text-base placeholder-white/40 focus:outline-none focus:border-violet-400 transition-colors"
               />
               {error && <p className="text-red-400 text-xs mt-1.5">{error}</p>}
             </div>
 
             {/* Character selection */}
-            <div className="mb-4">
-              <label className="block font-game text-white/80 mb-2 text-base">
+            <div className="mb-5">
+              <label className="block font-game text-white/80 mb-3 text-base">
                 Choose Your Hero!
               </label>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-3">
                 {CHARACTERS.map(char => (
                   <motion.button
                     key={char.id}
                     onClick={() => setSelectedChar(char.id)}
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    className={`flex items-center gap-3 px-3 py-2.5 rounded-xl border-2 text-left transition-all ${
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.96 }}
+                    className={`flex flex-col items-center gap-1.5 py-4 px-3 rounded-2xl border-2 text-center transition-all ${
                       selectedChar === char.id
-                        ? 'border-violet-400 bg-violet-500/30 shadow-md shadow-violet-500/30'
-                        : 'border-white/20 bg-white/5 hover:border-white/35 hover:bg-white/10'
+                        ? 'border-violet-400 bg-violet-500/30 shadow-lg shadow-violet-500/30'
+                        : 'border-white/20 bg-white/5 hover:border-white/40 hover:bg-white/10'
                     }`}
                   >
-                    <span className="text-2xl leading-none">{char.emoji}</span>
-                    <div className="min-w-0">
-                      <div className="font-game text-white text-sm leading-tight">{char.name}</div>
-                      <div className="text-white/55 text-xs leading-tight truncate">{char.desc}</div>
-                    </div>
+                    <span className="text-3xl leading-none">{char.emoji}</span>
+                    <span className="font-game text-white text-sm leading-tight">{char.name}</span>
+                    <span className="text-white/55 text-xs leading-tight">{char.desc}</span>
                   </motion.button>
                 ))}
               </div>
             </div>
 
-            <Button onClick={handleStart} size="md" className="w-full">
+            <Button onClick={handleStart} size="lg" className="w-full">
               Begin Quest! 🗺️
             </Button>
           </motion.div>
