@@ -10,23 +10,24 @@ export default function WorldCard({ world, index }) {
 
   return (
     <motion.div
-      className={`world-card relative rounded-3xl border-2 ${world.borderColor} ${world.bgColor} p-6 cursor-pointer overflow-hidden`}
-      initial={{ opacity: 0, y: 40 }}
+      className={`world-card relative rounded-2xl border-2 ${world.borderColor} ${world.bgColor} p-4 cursor-pointer overflow-hidden`}
+      initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
+      transition={{ delay: index * 0.08 }}
       onClick={() => navigate(`/world/${world.id}`)}
     >
       {/* Decorative glow */}
-      <div className={`absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br ${world.color} opacity-20 blur-2xl`} />
+      <div className={`absolute -top-8 -right-8 w-24 h-24 rounded-full bg-gradient-to-br ${world.color} opacity-20 blur-2xl`} />
 
-      <div className="relative">
-        <div className="text-5xl mb-3">{world.emoji}</div>
-        <h3 className={`font-game text-xl ${world.textColor} mb-1`}>{world.name}</h3>
-        <p className="text-white/60 text-sm mb-4 leading-relaxed">{world.description}</p>
-
-        <div className="flex items-center justify-between">
-          <StarRating stars={Math.min(totalStars, 3)} size="sm" />
-          <span className={`text-sm font-bold ${world.textColor}`}>{totalStars}/18 ⭐</span>
+      <div className="relative flex items-start gap-4">
+        <span className="text-4xl leading-none flex-shrink-0">{world.emoji}</span>
+        <div className="flex-1 min-w-0">
+          <h3 className={`font-game text-lg ${world.textColor} leading-tight`}>{world.name}</h3>
+          <p className="text-white/55 text-xs mt-0.5 mb-2 leading-relaxed line-clamp-2">{world.description}</p>
+          <div className="flex items-center justify-between">
+            <StarRating stars={Math.min(totalStars, 3)} size="sm" />
+            <span className={`text-xs font-bold ${world.textColor}`}>{totalStars}/18 ⭐</span>
+          </div>
         </div>
       </div>
     </motion.div>

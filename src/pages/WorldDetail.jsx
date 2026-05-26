@@ -30,20 +30,20 @@ export default function WorldDetail() {
 
         {/* World header */}
         <motion.div
-          className={`rounded-3xl border-2 ${world.borderColor} ${world.bgColor} p-8 mb-8 text-center`}
+          className={`rounded-2xl border-2 ${world.borderColor} ${world.bgColor} p-5 mb-5 text-center`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <div className="text-7xl mb-4">{world.emoji}</div>
-          <h1 className={`font-game text-3xl ${world.textColor} mb-2`}>{world.name}</h1>
-          <p className="text-white/70 mb-4">{world.storyIntro}</p>
+          <div className="text-5xl mb-2">{world.emoji}</div>
+          <h1 className={`font-game text-2xl ${world.textColor} mb-1`}>{world.name}</h1>
+          <p className="text-white/60 text-sm mb-3">{world.storyIntro}</p>
           <div className="flex justify-center">
-            <StarRating stars={Math.min(Object.values(worldProgress).reduce((a,b)=>a+b,0), 3)} />
+            <StarRating stars={Math.min(Object.values(worldProgress).reduce((a,b)=>a+b,0), 3)} size="sm" />
           </div>
         </motion.div>
 
         {/* Grade levels */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2.5">
           {world.grades.map((gradeData, i) => {
             const stars = worldProgress[gradeData.grade] || 0
             const unlocked = isLevelUnlocked(worldId, gradeData.grade)
@@ -51,28 +51,28 @@ export default function WorldDetail() {
             return (
               <motion.div
                 key={gradeData.grade}
-                className={`flex items-center gap-4 rounded-2xl border-2 p-5 transition-all ${
+                className={`flex items-center gap-3 rounded-xl border-2 p-3.5 transition-all ${
                   unlocked
                     ? `${world.borderColor} ${world.bgColor} cursor-pointer hover:scale-[1.02]`
-                    : 'border-white/10 bg-white/5 opacity-60'
+                    : 'border-white/10 bg-white/5 opacity-50'
                 }`}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.08 }}
+                transition={{ delay: i * 0.06 }}
                 onClick={() => unlocked && navigate(`/level/${worldId}/${gradeData.grade}`)}
               >
                 {/* Grade badge */}
-                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-game text-xl border-2 ${
+                <div className={`w-10 h-10 flex-shrink-0 rounded-xl flex items-center justify-center font-game text-base border-2 ${
                   unlocked ? `${world.borderColor} bg-white/10 text-white` : 'border-white/20 bg-white/5 text-white/40'
                 }`}>
                   {unlocked ? gradeData.grade : '🔒'}
                 </div>
 
-                <div className="flex-1">
-                  <p className={`font-game text-lg ${unlocked ? 'text-white' : 'text-white/40'}`}>
+                <div className="flex-1 min-w-0">
+                  <p className={`font-game text-base leading-tight ${unlocked ? 'text-white' : 'text-white/40'}`}>
                     Grade {gradeData.grade}: {gradeData.title}
                   </p>
-                  <p className="text-white/50 text-sm truncate">{gradeData.story}</p>
+                  <p className="text-white/45 text-xs truncate">{gradeData.story}</p>
                 </div>
 
                 <StarRating stars={stars} size="sm" />

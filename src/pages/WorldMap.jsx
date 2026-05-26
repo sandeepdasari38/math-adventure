@@ -12,44 +12,43 @@ export default function WorldMap() {
   const totalStars = getTotalStars()
 
   return (
-    <div className="min-h-screen star-bg p-6">
+    <div className="min-h-screen star-bg p-4 md:p-6">
       {/* Header */}
       <motion.div
-        className="flex items-center justify-between mb-8 max-w-4xl mx-auto"
+        className="flex items-center justify-between mb-5 max-w-4xl mx-auto"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <div className="flex items-center gap-3">
-          <span className="text-4xl">{CHARACTER_EMOJI[character]}</span>
+        <div className="flex items-center gap-2">
+          <span className="text-3xl">{CHARACTER_EMOJI[character]}</span>
           <div>
-            <p className="text-white/60 text-sm">Welcome back,</p>
-            <p className="font-game text-white text-xl">{playerName}</p>
+            <p className="text-white/50 text-xs">Welcome back,</p>
+            <p className="font-game text-white text-base">{playerName}</p>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => navigate('/profile')}
-            className="flex items-center gap-2 bg-yellow-500/20 border border-yellow-500/40 px-4 py-2 rounded-2xl hover:bg-yellow-500/30 transition-colors"
-          >
-            <span className="text-yellow-400 font-game text-lg">⭐ {totalStars}</span>
-          </button>
-        </div>
+        <button
+          onClick={() => navigate('/profile')}
+          className="flex items-center gap-1.5 bg-yellow-500/20 border border-yellow-500/40 px-3 py-1.5 rounded-xl hover:bg-yellow-500/30 transition-colors"
+        >
+          <span className="text-yellow-400 font-game text-base">⭐ {totalStars}</span>
+          <span className="text-white/50 text-xs">Profile</span>
+        </button>
       </motion.div>
 
       {/* Title */}
       <motion.div
-        className="text-center mb-10 max-w-4xl mx-auto"
+        className="text-center mb-6 max-w-4xl mx-auto"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.1 }}
       >
-        <h1 className="font-game text-4xl md:text-5xl text-white mb-2">Choose Your World</h1>
-        <p className="text-white/60">Explore all 4 worlds and master every level!</p>
+        <h1 className="font-game text-3xl md:text-4xl text-white mb-1">Choose Your World</h1>
+        <p className="text-white/50 text-sm">Explore all 4 worlds and master every level!</p>
       </motion.div>
 
       {/* World grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
         {WORLDS.map((world, i) => (
           <WorldCard key={world.id} world={world} index={i} />
         ))}
@@ -57,7 +56,7 @@ export default function WorldMap() {
 
       {/* Footer hint */}
       <motion.p
-        className="text-center text-white/30 text-sm mt-10"
+        className="text-center text-white/30 text-xs mt-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
