@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap');
+@import "tailwindcss";
+
+:root {
+  --font-game: 'Fredoka One', cursive;
+  --font-body: 'Nunito', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background: #0f0e17;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.font-game {
+  font-family: var(--font-game);
+}
+
+/* Animated star background */
+.star-bg {
+  background: linear-gradient(135deg, #0f0e17 0%, #1a1a2e 50%, #16213e 100%);
+  position: relative;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.8); }
+}
+
+@keyframes sparkle {
+  0% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+  100% { opacity: 0; transform: scale(0) rotate(360deg); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.1); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-wiggle { animation: wiggle 2s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+.animate-sparkle { animation: sparkle 1.5s ease-in-out infinite; }
+.animate-slide-up { animation: slide-up 0.5s ease-out forwards; }
+.animate-bounce-in { animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; }
+
+/* World card hover effect */
+.world-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.world-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Answer button states */
+.answer-btn {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.answer-btn:hover:not(:disabled) {
+  transform: scale(1.04);
+}
+.answer-btn.correct {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  border-color: #10b981 !important;
+  animation: bounce-in 0.4s ease forwards;
+}
+.answer-btn.wrong {
+  background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+  border-color: #ef4444 !important;
+  animation: wiggle 0.4s ease;
+}
+
+/* Progress bar */
+.progress-fill {
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #1a1a2e; }
+::-webkit-scrollbar-thumb { background: #4c1d95; border-radius: 3px; }
